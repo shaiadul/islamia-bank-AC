@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ইসলামিয়া ব্যাংক</title>
+    <!--tailwind cnd link  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+<!-- style tag -->
+    <style>
+        #login-submit{
+            border-top-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-green-400">
+   <header>
+    <h1 class="text-4xl text-center mt-16">ইসলামি শরীয়াহ ব্যাংকে <span class="font-semibold text-purple-600">লেনদেন নিশ্চিন্তে</span> !!!</h1>
+   </header>
+
+   <main>
+        <section class="bg-blue-300 w-3/4 mx-auto mt-8 rounded">
+            <img class="w-40 h-36 mx-auto pb-0 mb-0 " src="img/bank-logo.png" alt="">
+            <h3 class="text-2xl text-center font-semibold text-blue-500 pt-0 mt-0">Please Login</h3>
+            <div class="text-center mt-8">
+                <!-- email -->
+                <input id="user-email" class="border-2 border-gray-400 rounded w-3/4 mb-4 px-3" type="text" placeholder="Your Email" required><br>
+                <!-- pass -->
+                <input id="user-password" class="border-2 border-gray-400 rounded w-3/4 mb-4 px-3 "  type="password" placeholder="Password" required><br>
+                <!-- button -->
+                <button id="login-submit" class="bg-yellow-500 text-white font-bold px-4 py-2  mb-8 mt-8">Submit</button>
+            </div>
+        </section>
+   </main>
+<!-- script link here -->
+<script src="/javascript/bank.js"></script>
+</body>
+</html>

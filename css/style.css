@@ -1,0 +1,21 @@
+body{
+    background-image: linear-gradient(rgb(80, 189, 161),rgb(119, 158, 180));
+}
+#deposit-amount{
+    border-top-left-radius: 13px;
+    border-bottom-right-radius: 13px;
+}
+#withdraw-amount{
+    border-top-left-radius: 13px;
+    border-bottom-right-radius: 13px;
+}
+
+#deposit-button{
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+#withdraw-button{
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
