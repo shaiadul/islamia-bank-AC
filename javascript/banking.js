@@ -1,61 +1,61 @@
-// handle deposit button event
-document.getElementById('deposit-button').addEventListener('click', function(){
-    //get deposit amount by user
-    let depositInput = document.getElementById('deposit-amount');
-    let NewDepositAmountText = depositInput.value;
-    let NewDepositAmount = parseFloat(NewDepositAmountText);
-    //deposit total set
-    let depositTotal = document.getElementById('deposit-total');
 
-    let previousDepositText = depositTotal.innerText
-    let previousDepositAmount = parseFloat(previousDepositText);
+function getInputValue(inputId) {
+    debugger;
+    const inputField = document.getElementById(inputId);
+    const inputAmountText = inputField.value;
+    const amountValue = parseFloat(inputAmountText);
+    // clear input field
+    inputField.value = '';
+    return amountValue;
+}
 
-    let NewDepositTotal =parseFloat(previousDepositAmount)  + parseFloat(NewDepositAmount) ;
+function updateTotalField(totalFieldId, amount) {
+    // debugger;
+    const totalElement = document.getElementById(totalFieldId);
+    const totalText = totalElement.innerText;
+    const previousTotal = parseFloat(totalText);
+    totalElement.innerText = previousTotal + amount;
+}
 
-    depositTotal.innerText = NewDepositTotal;
-    
+function getCurrentBalance() {
+    const balanceTotal = document.getElementById('balance-total');
+    const balanceTotalText = balanceTotal.innerText;
+    const previousBalanceTotal = parseFloat(balanceTotalText);
+    return previousBalanceTotal;
+}
 
-    // ................update account balance
-    let balanceTotal = document.getElementById('balance-total');
+function updateBalance(amount, isAdd) {
+    const balanceTotal = document.getElementById('balance-total');
+  
+    const previousBalanceTotal = getCurrentBalance();
+    if (isAdd == true) {
+        balanceTotal.innerText = previousBalanceTotal + amount;
+    }
+    else {
+        balanceTotal.innerText = previousBalanceTotal - amount;
+    }
+}
 
-    let balanceTotalText = balanceTotal.innerText;
-    let previousBalanceTotal = parseFloat(balanceTotalText);
-    let newBalanceTotal = previousBalanceTotal + NewDepositAmount;
+document.getElementById('deposit-button').addEventListener('click', function () {
 
-    balanceTotal.innerText = newBalanceTotal;
-    //clear field
-    depositInput.value= '';
-})
+    const depositAmount = getInputValue('deposit-amount');
+    if (depositAmount > 0) {
+        updateTotalField('deposit-total', depositAmount);
+        updateBalance(depositAmount, true);
+    }
+});
 
+// handle withdraw button 
+document.getElementById('withdraw-button').addEventListener('click', function () {
+   
 
-// withdraw button handel
-document.getElementById('withdraw-button').addEventListener('click',function(){
-    let withdrawInput = document.getElementById('withdraw-amount');
-
-    let withdrawAmountText = withdrawInput.value;
-    let newWithdrawAmount = parseFloat(withdrawAmountText);
-
-    //set withdraw total
-    let withdrawTotal = document.getElementById('withdraw-total');
-
-    let previousWithsrawText = withdrawTotal.innerText;
-    let previousWithsrawTotal = parseFloat(previousWithsrawText);
-
-    let newWithdrawTotal = previousWithsrawTotal + newWithdrawAmount;
-
-    // set 
-    withdrawTotal.innerText = newWithdrawTotal;
-
-    //update balance
-    let balanceTotal = document.getElementById('balance-total');
-
-    let previousBalanceText = balanceTotal.innerText;
-    let previousBalanceTotal = parseFloat(previousBalanceText);
-
-    let newBalanceTotal = previousBalanceTotal - newWithdrawAmount;
-
-    balanceTotal.innerText =newBalanceTotal;
-
-    // clear
-    withdrawInput.value = '';
+    const withdrawAmount = getInputValue('withdraw-amount');
+    const currentBalance = getCurrentBalance();
+    if (withdrawAmount > 0 && withdrawAmount < currentBalance) {
+        updateTotalField('withdraw-total', withdrawAmount);
+        updateBalance(withdrawAmount, false);
+    }
+    if (withdrawAmount > currentBalance) {
+        alert('You can not withdraw more than what you have in your account');
+    }
 });
